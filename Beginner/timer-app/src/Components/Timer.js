@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+// import { FaPlay, FaPause, FaRedo } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faPause, faRedo } from '@fortawesome/free-solid-svg-icons';
 
 const Timer = () => {
 
@@ -7,7 +10,6 @@ const [time, setTime] = useState(0);
 
 useEffect(() => {
     let interval = null;
-    
     if (timerStatus === 'running') {
         interval = setInterval(() => {
         setTime(prevTime => prevTime + 1);
@@ -33,16 +35,43 @@ const displayTime = () => {
     
 }
 
+const buttonDisplay = () => {
+    if (timerStatus === 'stopped') {  
+        return (
+            <>
+                <button className="start-button" onClick={() => setTimerStatus('running')}>
+                <FontAwesomeIcon icon={faPlay} />
+                </button>
+            </>
+        );  
+    }
+    else{
+        return (
+            <>
+                <button className="reset-button" onClick={() => setTimerStatus('stopped')}>
+                <FontAwesomeIcon icon={faRedo} />
+                </button>
+                <button className="pause-button" onClick={() => setTimerStatus((currentStatus) => currentStatus === 'running' ? 'paused' : 'running')}>
+                    {
+                        timerStatus === 'running' ? 
+                        <FontAwesomeIcon icon={faPause} /> : 
+                        <FontAwesomeIcon icon={faPlay} />
+                    }
+                </button>
+            </>
+        );
+    }
+}
+
   return (
     <div className="timer">
         <h1>Timer</h1>
         <div className="timer-display">
             <span className="time">{displayTime()}</span>
+            <hr />
         </div>
         <div className="timer-controls">
-            <button className="start-button" onClick={()=>setTimerStatus('running')}>Start</button>
-            <button className="stop-button" onClick={()=>setTimerStatus('paused')}>Pause</button>
-            <button className="reset-button" onClick={()=>setTimerStatus('stopped')}>Reset</button>
+            {buttonDisplay()}
         </div>
     </div>
   );
