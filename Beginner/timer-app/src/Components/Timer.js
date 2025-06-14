@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-// import { FaPlay, FaPause, FaRedo } from 'react-icons/fa';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faRedo } from '@fortawesome/free-solid-svg-icons';
+import TimerButton from './TimerButton';
 
 const Timer = () => {
 
@@ -14,11 +13,7 @@ useEffect(() => {
         interval = setInterval(() => {
         setTime(prevTime => prevTime + 1);
         }, 1000);
-    } else if (timerStatus=== 'paused') {
-        clearInterval(interval);
-    }
-    else{
-        clearInterval(interval);
+    } else if (timerStatus=== 'stopped') {
         setTime(0);
     }
     
@@ -35,34 +30,6 @@ const displayTime = () => {
     
 }
 
-const buttonDisplay = () => {
-    if (timerStatus === 'stopped') {  
-        return (
-            <>
-                <button className="start-button" onClick={() => setTimerStatus('running')}>
-                <FontAwesomeIcon icon={faPlay} />
-                </button>
-            </>
-        );  
-    }
-    else{
-        return (
-            <>
-                <button className="reset-button" onClick={() => setTimerStatus('stopped')}>
-                <FontAwesomeIcon icon={faRedo} />
-                </button>
-                <button className="pause-button" onClick={() => setTimerStatus((currentStatus) => currentStatus === 'running' ? 'paused' : 'running')}>
-                    {
-                        timerStatus === 'running' ? 
-                        <FontAwesomeIcon icon={faPause} /> : 
-                        <FontAwesomeIcon icon={faPlay} />
-                    }
-                </button>
-            </>
-        );
-    }
-}
-
   return (
     <div className="timer">
         <h1>Timer</h1>
@@ -71,7 +38,36 @@ const buttonDisplay = () => {
             <hr />
         </div>
         <div className="timer-controls">
-            {buttonDisplay()}
+            {
+                timerStatus === 'stopped' ?
+                <TimerButton 
+                    className="start-button"
+                    onClick={() => setTimerStatus('running')}
+                    datatTooltip="Start Timer"
+                    dataTooltipSize="large"
+                    arialAbel="Start Timer"
+                    icon={faPlay}
+                />
+                :
+                <>
+                <TimerButton
+                    className="reset-button"
+                    onClick={() => setTimerStatus('stopped')}
+                    datatTooltip="Reset Timer"
+                    dataTooltipSize="small"
+                    arialAbel="Reset Timer"
+                    icon={faRedo}
+                />
+                <TimerButton
+                    className="pause-button"
+                    onClick={() => setTimerStatus((currentStatus) => currentStatus === 'running' ? 'paused' : 'running')}
+                    datatTooltip={timerStatus === 'running' ? 'Pause Timer' : 'Resume Timer'}
+                    dataTooltipSize="small"
+                    arialAbel={timerStatus === 'running' ? 'Pause Timer' : 'Resume Timer'}
+                    icon={timerStatus === 'running' ? faPause : faPlay}
+                />
+                </>
+            }
         </div>
     </div>
   );
