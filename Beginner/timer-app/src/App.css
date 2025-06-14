@@ -28,30 +28,31 @@
   font-size: 48px;
 }
 
-.start-button {
-  width: 140px;
-  height: 50px;
-  font-weight: bold;
+button {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 20px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   padding: 10px 20px;
   margin-top: 20px;
   cursor: pointer;
-  background-color: #61dafb;
   border: none;
-  border-radius: 10px;
   color: white;
+}
+
+.start-button {
+  width: 140px;
+  height: 50px;
+  font-size: 16px;
+  background-color: #61dafb;
+  border-radius: 10px;
 }
 
 .reset-button {
   font-size: 12px;
   padding: 10px 20px;
   margin-top: 20px;
-  cursor: pointer;
   background-color: #ff6347;
-  border: none;
   border-radius: 5px;
-  color: white;
   margin-right: 5px;
 }
 
@@ -59,12 +60,42 @@
   font-size: 12px;
   padding: 10px 20px;
   margin-top: 20px;
-  cursor: pointer;
   background-color: #61dafb;
-  border: none;
   border-radius: 5px;
-  color: white;
 } 
+
+button[data-tooltip][data-tooltip-size="large"]::after {
+  font-size: 16px;
+}
+
+button[data-tooltip][data-tooltip-size="small"]::after {
+  font-size: 12px;
+}
+
+button[data-tooltip] {
+    position: relative;
+}
+
+button[data-tooltip]:hover::after {
+    content: attr(data-tooltip); /* Display the title attribute */
+    position: absolute;
+    top: -30px; /* Adjust position */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+button::after {
+    opacity: 0;
+    pointer-events: none;
+}
 
 .App-link {
   color: #61dafb;
