@@ -1,0 +1,119 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: black;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: brown;
+}
+
+.write-notes {
+  background-color: burlywood;
+  min-height: 100vh;
+  min-width: 40vw;
+}
+
+input {
+  background-color: white;
+  height: 5vh;
+  width: 25vw;
+  margin: 0.2vw 2vw 5vw 0vw;
+  border: none beige;
+  border-radius: 1vw;
+  color: black;
+}
+
+.add-note-btn, .delete-note-btn, .edit-note-btn {
+   cursor: pointer;
+}
+
+.add-note-btn {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 0.5vw 1vw;
+  border-radius: 0.5vw;
+}
+
+.add-note-btn:disabled {
+  cursor: not-allowed; /* Disabled state */
+  opacity: 0.6;        /* Optional: visually indicate disabled */
+}
+
+.note-item {
+  color: black;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 1vh 3vw;
+  padding: 0.5vw 0.5vw;
+  height: 10vh;
+  gap: 0.5vw;
+  border-radius: 1vw;
+  background-color: darkgrey;
+}
+
+.note-pointer {
+  display: flex;
+  width: 5%;
+}
+
+.note-context {
+  display: flex;
+  width: 75%;
+}
+
+.note-actions {
+  display: flex;
+  width: 15%;
+  gap: 1vw;
+}
+
+.add-notes {
+  background-color: #282c34;
+  padding: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Add to your CSS file */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: 80px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 110%; /* Position above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.85rem;
+}
+
+.tooltip-text.action {
+  background-color: gray; /* Blue background for action tooltips */
+  font-size: smaller;
+  bottom: 120%;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
