@@ -1,0 +1,38 @@
+.App {
+  background-color: #282c34;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.header {
+  color: white;
+  padding: 10px 0px;
+}
+
+.search-bar {
+  width: 300px;
+}
+
+.suggestion-container {
+  width: 300px;
+  max-height: 300px;
+  border: 2px solid white;
+  box-sizing: content-box;
+  margin: auto;
+  padding: 5px 0px;
+  border-radius: 0px 0px 5px 5px;
+  overflow-y: scroll;
+}
+
+.suggestion {
+  display: block;
+  text-align: left;
+  padding: 5px;
+  color: aliceblue;
+}
+
+.suggestion:hover {
+  background-color:cadetblue;
+  cursor:pointer;
+  border-radius: 0px 16px 16px 0px;
+}
